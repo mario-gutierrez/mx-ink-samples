@@ -205,12 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ffb8ef72016454589ac82b355a0897, type: 3}
   m_Name: LogitechMxInkControllerProfile Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  m_enabled: 1
+  nameUi: Logitech MX Ink Stylus Interaction Profile
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.input.logitechmxink
+  openxrExtensionStrings: XR_LOGITECH_mx_ink_stylus_interaction
+  company: Logitech
   priority: 0
   required: 0
 --- !u!114 &-4729970682544442345
@@ -808,6 +808,7 @@ MonoBehaviour:
   - {fileID: -5140502711456532052}
   - {fileID: -3459599242855594274}
   - {fileID: -6074517146951629385}
+  - {fileID: -4963409815027878646}
   - {fileID: -7565451487561970342}
   - {fileID: 3869896368710997111}
   - {fileID: -6221262778425660379}
