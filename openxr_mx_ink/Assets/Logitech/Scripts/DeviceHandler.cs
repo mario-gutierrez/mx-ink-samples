@@ -4,8 +4,9 @@ using UnityEngine.XR;
 
 public class DeviceHandler : MonoBehaviour
 {
-    public GameObject LeftHand;
-    public GameObject RightHand;
+    public MxInkHandler MxInkStylus;
+    [SerializeField] private GameObject _leftHand;
+    [SerializeField] private GameObject _rightHand;
     private void Awake()
     {
         InputDevices.deviceConnected += DeviceConnected;
@@ -28,8 +29,8 @@ public class DeviceHandler : MonoBehaviour
         bool mxInkDisconnected = device.name.ToLower().Contains("logitech");
         if (mxInkDisconnected)
         {
-            LeftHand.SetActive(false);
-            RightHand.SetActive(false);
+            _leftHand.SetActive(false);
+            _rightHand.SetActive(false);
         }
     }
     private void DeviceConnected(InputDevice device)
@@ -39,19 +40,11 @@ public class DeviceHandler : MonoBehaviour
         if (mxInkConnected)
         {
             bool isOnRightHand = (device.characteristics & InputDeviceCharacteristics.Right) != 0;
-            LeftHand.SetActive(!isOnRightHand);
-            RightHand.SetActive(isOnRightHand);
+            _leftHand.SetActive(!isOnRightHand);
+            _rightHand.SetActive(isOnRightHand);
 
-            MxInkHandler MxInkStylus = FindFirstObjectByType<MxInkHandler>();
-            if (MxInkStylus)
-            {
-                MxInkStylus.SetHandedness(isOnRightHand);
-                LineDrawing lineDrawing = FindFirstObjectByType<LineDrawing>();
-                if (lineDrawing)
-                {
-                    lineDrawing.Stylus = MxInkStylus;
-                }
-            }
+            MxInkStylus = FindFirstObjectByType<MxInkHandler>();
+            MxInkStylus.SetHandedness(isOnRightHand);
         }
     }
 }

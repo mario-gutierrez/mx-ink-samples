@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -44,8 +45,8 @@ public class LineDrawing : MonoBehaviour
     private float longPressDuration = 1.0f;
     private float buttonPressedTimestamp = 0;
 
-    public MxInkHandler Stylus;
-
+    private MxInkHandler _stylus;
+    [SerializeField] private DeviceHandler _deviceHandler;
     private Vector3 _previousLinePoint;
     private const float _minDistanceBetweenLinePoints = 0.0005f;
 
@@ -73,8 +74,8 @@ public class LineDrawing : MonoBehaviour
     {
         const float dampingFactor = 0.6f;
         const float duration = 0.01f;
-        float middleButtonPressure = Stylus.CurrentState.cluster_middle_value * dampingFactor;
-        Stylus.TriggerHapticPulse(middleButtonPressure, duration);
+        float middleButtonPressure = _stylus.CurrentState.cluster_middle_value * dampingFactor;
+        _stylus.TriggerHapticPulse(middleButtonPressure, duration);
     }
     private void AddPoint(Vector3 position, float width)
     {
@@ -126,19 +127,19 @@ public class LineDrawing : MonoBehaviour
 
     void Update()
     {
+        _stylus = _deviceHandler.MxInkStylus;
+        if (!_stylus) return;
 
-        if (!Stylus) return;
+        float analogInput = Mathf.Max(_stylus.CurrentState.tip_value, _stylus.CurrentState.cluster_middle_value);
 
-        float analogInput = Mathf.Max(Stylus.CurrentState.tip_value, Stylus.CurrentState.cluster_middle_value);
-
-        if (analogInput > 0 && Stylus.CanDraw())
+        if (analogInput > 0 && _stylus.CanDraw())
         {
             if (!_isDrawing)
             {
                 StartNewLine();
                 _isDrawing = true;
             }
-            AddPoint(Stylus.CurrentState.inkingPose.position, _lineWidthIsFixed ? 1.0f : analogInput);
+            AddPoint(_stylus.CurrentState.inkingPose.position, _lineWidthIsFixed ? 1.0f : analogInput);
         }
         else
         {
@@ -146,8 +147,8 @@ public class LineDrawing : MonoBehaviour
         }
 
         //Undo by double tapping or clicking on cluster_back button on stylus
-        if (Stylus.CurrentState.cluster_back_double_tap_value ||
-        Stylus.CurrentState.cluster_back_value)
+        if (_stylus.CurrentState.cluster_back_double_tap_value ||
+        _stylus.CurrentState.cluster_back_value)
         {
             if (_lines.Count > 0 && !_doubleTapDetected)
             {
