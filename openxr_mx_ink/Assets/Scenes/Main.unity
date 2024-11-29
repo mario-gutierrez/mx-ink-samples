@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &85050635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3650243738890987356, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+  m_PrefabInstance: {fileID: 1429643374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &184503653
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +177,22 @@ Transform:
   - {fileID: 1119322369}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &223974227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6470644740982795705, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+  m_PrefabInstance: {fileID: 1429643374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903b938f14be6284abb4b97e36b97305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &463930438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8311002878812707939, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+  m_PrefabInstance: {fileID: 1429643374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MX_Ink
       objectReference: {fileID: 0}
+    - target: {fileID: 6470644740982795705, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+      propertyPath: _leftHand
+      value: 
+      objectReference: {fileID: 463930438}
+    - target: {fileID: 6470644740982795705, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+      propertyPath: _rightHand
+      value: 
+      objectReference: {fileID: 85050635}
     - target: {fileID: 9082205288433658024, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -797,6 +826,10 @@ PrefabInstance:
       propertyPath: Stylus
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
+      propertyPath: _deviceHandler
+      value: 
+      objectReference: {fileID: 223974227}
     - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
       propertyPath: _currentColor.b
       value: 0.9342737
