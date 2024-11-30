@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MX_Ink
       objectReference: {fileID: 0}
+    - target: {fileID: 3650243738890987356, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6470644740982795705, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
       propertyPath: _leftHand
       value: 
@@ -840,6 +844,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
       propertyPath: _currentColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
+      propertyPath: highlightColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
+      propertyPath: highlightColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
+      propertyPath: highlightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467874878798025286, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
+      propertyPath: highlightColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5813962334383774754, guid: 409a07891ba39f045b59397c44c20ffd, type: 3}
