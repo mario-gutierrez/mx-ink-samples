@@ -9,6 +9,9 @@ public struct StylusInputs
     public bool cluster_back_double_tap_value;
     public bool any;
     public Pose inkingPose;
+    public bool positionIsTracked;
+    public bool positionIsValid;
+    public float batteryLevel;
     public bool isActive;
     public bool isOnRightHand;
     public bool docked;
@@ -22,10 +25,7 @@ public abstract class StylusHandler : MonoBehaviour
     {
         get { return _stylus; }
     }
-    public void SetHandedness(bool isOnRightHand)
-    {
-        _stylus.isOnRightHand = isOnRightHand;
-    }
+
     public virtual bool CanDraw()
     {
         return true;

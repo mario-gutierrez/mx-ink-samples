@@ -53,16 +53,10 @@ public class LineDrawing : MonoBehaviour
     private float longPressDuration = 1.0f;
     private float buttonPressedTimestamp = 0;
 
+    [SerializeField]
     private StylusHandler _stylusHandler;
-    [SerializeField] private DeviceHandler _deviceHandler;
     private Vector3 _previousLinePoint;
     private const float _minDistanceBetweenLinePoints = 0.0005f;
-
-    private void Start()
-    {
-        _currentColor = Color.black;
-        _stylusHandler = _deviceHandler.MxInkStylus;
-    }
 
     private void StartNewLine()
     {
@@ -135,13 +129,11 @@ public class LineDrawing : MonoBehaviour
         const float dampingFactor = 0.6f;
         const float duration = 0.01f;
         float middleButtonPressure = _stylusHandler.CurrentState.cluster_middle_value * dampingFactor;
-        ((MxInkHandler)_stylusHandler).TriggerHapticPulse(middleButtonPressure, duration);
+        ((VrStylusHandler)_stylusHandler).TriggerHapticPulse(middleButtonPressure, duration);
     }
 
     void Update()
     {
-        _stylusHandler = _deviceHandler.MxInkStylus;
-
         float analogInput = Mathf.Max(_stylusHandler.CurrentState.tip_value, _stylusHandler.CurrentState.cluster_middle_value);
 
         if (analogInput > 0 && _stylusHandler.CanDraw())
@@ -179,14 +171,14 @@ public class LineDrawing : MonoBehaviour
                     Destroy(_highlightedLine);
                     _highlightedLine = null;
                     //haptic click when removing highlighted line
-                    ((MxInkHandler)_stylusHandler).TriggerHapticClick();
+                    ((VrStylusHandler)_stylusHandler).TriggerHapticClick();
                     return;
                 }
                 else
                 {
                     RemoveLastLine();
                     //haptic click when deleting last line
-                    ((MxInkHandler)_stylusHandler).TriggerHapticClick();
+                    ((VrStylusHandler)_stylusHandler).TriggerHapticClick();
                     return;
                 }
             }
@@ -194,7 +186,7 @@ public class LineDrawing : MonoBehaviour
             if (_lines.Count > 0 && Time.time >= (buttonPressedTimestamp + longPressDuration))
             {
                 //haptic pulse when removing all lines
-                ((MxInkHandler)_stylusHandler).TriggerHapticPulse(1.0f, 0.1f);
+                ((VrStylusHandler)_stylusHandler).TriggerHapticPulse(1.0f, 0.1f);
                 ClearAllLines();
                 return;
             }
@@ -287,7 +279,7 @@ public class LineDrawing : MonoBehaviour
         _cachedColor = lineRenderer.material.color;
         lineRenderer.material.color = highlightColor;
         //haptic click when highlighting a line
-        ((MxInkHandler)_stylusHandler).TriggerHapticClick();
+        ((VrStylusHandler)_stylusHandler).TriggerHapticClick();
     }
 
     private void UnhighlightLine(GameObject line)
@@ -296,7 +288,7 @@ public class LineDrawing : MonoBehaviour
         lineRenderer.material.color = _cachedColor;
         _highlightedLine = null;
         //haptic click when unhighlighting a line
-        ((MxInkHandler)_stylusHandler).TriggerHapticClick();
+        ((VrStylusHandler)_stylusHandler).TriggerHapticClick();
     }
 
     private void StartGrabbingLine()
@@ -309,7 +301,7 @@ public class LineDrawing : MonoBehaviour
         _originalLinePositions = new Vector3[lineRenderer.positionCount];
         lineRenderer.GetPositions(_originalLinePositions);
         //haptic pulse when start grabbing a line
-        ((MxInkHandler)_stylusHandler).TriggerHapticPulse(1.0f, 0.03f);
+        ((VrStylusHandler)_stylusHandler).TriggerHapticPulse(1.0f, 0.03f);
     }
 
     private void MoveHighlightedLine()
